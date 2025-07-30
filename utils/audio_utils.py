@@ -99,7 +99,7 @@ def keras_pad_seqs(sequences, maxlen=None, dtype='int32',
             sample_shape = np.asarray(s).shape[1:]
             break
 
-    is_dtype_str = np.issubdtype(dtype, np.str_) or np.issubdtype(dtype, np.unicode_)
+    is_dtype_str = np.issubdtype(dtype, np.str_)
     if isinstance(value, six.string_types) and dtype != object and not is_dtype_str:
         raise ValueError("`dtype` {} is not compatible with `value`'s type: {}\n"
                          "You should set `dtype=object` for variable length strings."
@@ -225,7 +225,7 @@ def featurize_melspec(f=None, offset=None, duration=None, y=None, sr=None,
 
     if augment_fn is not None:
         y = augment_fn(y)
-    S = librosa.feature.melspectrogram(y, sr, hop_length=hop_length).T
+    S = librosa.feature.melspectrogram(y=y, sr=sr, hop_length=hop_length).T
     S = librosa.amplitude_to_db(S, ref=np.max)
     if spec_augment_fn is not None:
         S = spec_augment_fn(S)
