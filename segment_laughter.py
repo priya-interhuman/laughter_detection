@@ -40,11 +40,10 @@ def run_laughter_segmentation(
 
     feature_fn = config['feature_fn']
 
-    script_dir = os.getcwd()
-    model_path = os.path.join(script_dir, 'checkpoints', 'in_use', 'resnet_with_augmentation')
+    model_path = os.path.join('/app', 'laughter_detection', 'checkpoints', 'in_use', 'resnet_with_augmentation', 'best.pth.tar')
 
     if os.path.exists(model_path):
-        torch_utils.load_checkpoint(os.path.join(model_path, 'best.pth.tar'), model)
+        torch_utils.load_checkpoint(model_path, model)
     else:
         raise FileNotFoundError(f"Model checkpoint not found at {model_path}")
 
