@@ -12,7 +12,6 @@ import laugh_segmenter, models, configs, data_loaders, audio_utils, torch_utils
 # Modified to be a callable function instead of a python script with args
 def run_laughter_segmentation(
     audio_path: str,
-    model_path: str = 'checkpoints/in_use/resnet_with_augmentation',
     config_name: str = 'resnet_with_augmentation',
     threshold: float = 0.5,
     min_length: float = 0.2,
@@ -40,6 +39,9 @@ def run_laughter_segmentation(
     model.eval()
 
     feature_fn = config['feature_fn']
+
+    script_dir = os.getcwd()
+    model_path = os.path.join(script_dir, 'checkpoints', 'in_use', 'resnet_with_augmentation')
 
     if os.path.exists(model_path):
         torch_utils.load_checkpoint(os.path.join(model_path, 'best.pth.tar'), model)
