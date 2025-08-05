@@ -2,8 +2,7 @@ import pandas as pd, numpy as np, math, os
 from praatio import tgio
 from nltk.tokenize import word_tokenize
 from joblib import Parallel, delayed
-import text_utils
-import audio_utils
+from laughter_detection.utils import text_utils, audio_utils
 import itertools
 from tqdm import tqdm
 

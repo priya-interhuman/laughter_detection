@@ -1,6 +1,6 @@
 import torch, numpy as np, librosa
 from torch.utils import data
-import dataset_utils, audio_utils
+from laughter_detection.utils import dataset_utils, audio_utils
 from joblib import Parallel, delayed
 import pandas as pd
 

@@ -4,7 +4,7 @@ from tqdm import tqdm
 from functools import partial
 #from keras.preprocessing.sequence import pad_sequences as keras_pad_seqs
 from collections import defaultdict
-import text_utils
+from laughter_detection.utils import text_utils
 from sklearn.utils import shuffle
 import copy, random
 import six

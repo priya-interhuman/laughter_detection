@@ -7,7 +7,8 @@ import tgt
 from functools import partial
 from tqdm import tqdm
 
-import laugh_segmenter, models, configs, data_loaders, audio_utils, torch_utils
+from laughter_detection import laugh_segmenter, models, configs
+from laughter_detection.utils import data_loaders, audio_utils, torch_utils
 
 # Modified to be a callable function instead of a python script with args
 def run_laughter_segmentation(
@@ -40,7 +41,13 @@ def run_laughter_segmentation(
 
     feature_fn = config['feature_fn']
 
-    model_path = os.path.join('/app', 'laughter_detection', 'checkpoints', 'in_use', 'resnet_with_augmentation', 'best.pth.tar')
+    #TODO[pmsarkar] this is a HACK
+    if os.path.exists("/app"):
+        base_dir = "/app"
+    else:
+        base_dir = os.getcwd()
+
+    model_path = os.path.join(base_dir, 'laughter_detection', 'checkpoints', 'in_use', 'resnet_with_augmentation', 'best.pth.tar')
 
     if os.path.exists(model_path):
         torch_utils.load_checkpoint(model_path, model)
@@ -115,7 +122,7 @@ def run_laughter_segmentation(
         {
             "start": round(start, 3),
             "end": round(end, 3),
-            "duration": end - start
+            "duration": round(end - start, 3)
         }
         for path, (start, end) in zip(wav_paths, instances)
     ]

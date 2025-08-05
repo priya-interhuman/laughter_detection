@@ -10,9 +10,9 @@ from joblib import Parallel, delayed
 from tqdm import tqdm
 import warnings
 
-sys.path.append('./utils/')
-import models, configs
-import dataset_utils, audio_utils, data_loaders, torch_utils
+from laughter_detection import models, configs
+from laughter_detection.utils import dataset_utils, audio_utils, data_loaders, torch_utils
+
 from tqdm import tqdm
 from torch import optim, nn
 from functools import partial    

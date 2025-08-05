@@ -3,7 +3,7 @@ import torch
 from torch import nn
 from torch.autograd import Variable
 from tensorboardX import SummaryWriter
-import text_utils
+from laughter_detection.utils import text_utils
 
 # Import different progress bar depending on environment
 # https://stackoverflow.com/questions/15411967/how-can-i-check-if-code-is-executed-in-the-ipython-notebook

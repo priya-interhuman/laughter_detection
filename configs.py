@@ -1,6 +1,6 @@
 import sys, numpy as np
-sys.path.append('./utils')
-import models, audio_utils
+from laughter_detection import models
+from laughter_detection.utils import audio_utils
 from functools import partial
 
 # takes a batch tuple (X,y)
